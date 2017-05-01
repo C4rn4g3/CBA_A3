@@ -1,18 +1,18 @@
 #include "\x\cba\addons\keybinding\script_component.hpp"
 
 disableSerialization;
-private ["_display", "_combo", "_comboMod", "_lnb", "_lnbIndex", "_actionId", "_modId", "_modRegistry", "_actionEntryId", "_actionEntry", "_hashDown", "_entryIndex", "_defaultEntry"];
+private ["_display", "_combo", "_comboMod", "_lnb", "_lnbIndex", "_actionId", "_modId", "_modRegistry", "_actionEntryId", "_actionEntry", "_hashDown", "_entryIndex", "_defaultEntry"]
 // Get button
 params ["_button"];
 // Get dialog
 _display = uiNamespace getVariable "RscDisplayConfigure";
 
-_combo = _display displayCtrl 208;
+_combo = _display displayCtrl IDC_ADDON_LIST;
 // Get the mod selected in the comobo
 _comboMod = _combo lbData (lbCurSel _combo);
 
 // Get listnbox
-_lnb = _display displayCtrl 202;
+_lnb = _display displayCtrl IDC_KEY_LIST;
 // Get currently selected index
 _lnbIndex = lnbCurSelRow _lnb;
 // Get handler tracker index array for keys stored in listbox data string
@@ -39,7 +39,7 @@ _defaultEntry = (GVAR(defaultKeybinds) select 1) select _entryIndex;
     _actionEntry select 0,
     _defaultEntry select 0,
     _defaultEntry select 1,
-    _actionEntry select 2,
+    [-1,[false,false,false]],
     _defaultEntry select 2,
     _defaultEntry select 3,
     true
@@ -49,4 +49,4 @@ _defaultEntry = (GVAR(defaultKeybinds) select 1) select _entryIndex;
 GVAR(waitingForInput) = false;
 
 // Update the main dialog.
-[] call FUNC(updateGUI);
+[] call FUNC(gui_update);

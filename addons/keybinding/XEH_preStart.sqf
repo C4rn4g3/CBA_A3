@@ -1,6 +1,8 @@
 #include "script_component.hpp"
 
-PREP(configureDisplayLoad);
+if (!hasInterface) exitWith {};
+
+#include "XEH_PREP.sqf"
 
 private _supportedKeys = [
     DIK_ESCAPE,

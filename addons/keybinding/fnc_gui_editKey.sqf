@@ -1,16 +1,22 @@
-//#define DEBUG_MODE_FULL
-#include "\x\cba\addons\keybinding\script_component.hpp"
+#include "script_component.hpp"
 
+params ["_control", "_index"];
+
+ctrlParent _control createDisplay "RscDisplayConfigureAction";
+
+
+
+/*
 disableSerialization;
 private ["_display", "_lnb", "_lnbIndex", "_combo", "_comboMod", "_actionId"];
 _display = uiNamespace getVariable "RscDisplayConfigure";
 
 // Get listnbox
-_lnb = _display displayCtrl 202;
+_lnb = _display displayCtrl IDC_KEY_LIST;
 // Get currently selected index
 _lnbIndex = lnbCurSelRow _lnb;
 // Get combobox
-_combo = _display displayCtrl 208;
+_combo = _display displayCtrl IDC_ADDON_LIST;
 // Get the mod selected in the comobo
 _comboMod = _combo lbData (lbCurSel _combo);
 
@@ -88,7 +94,7 @@ _fnc = {
 
             };
         };
-        [] call FUNC(updateGUI);
+        [] call FUNC(gui_update);
     };
 };
 [_fnc, 0, [_actionId, _lnb, _lnbIndex, _comboMod, _combo, _display]] call cba_fnc_addPerFrameHandler;

@@ -3,6 +3,8 @@ SCRIPT(XEH_preInit);
 
 if (!hasInterface) exitWith {};
 
+#include "XEH_PREP.sqf"
+
 ADDON = false;
 
 // Load DIK to string conversion table.
@@ -12,19 +14,6 @@ with uiNamespace do {
 
 GVAR(keyNames) = uiNamespace getVariable QGVAR(keyNames);
 GVAR(forbiddenKeys) = uiNamespace getVariable QGVAR(forbiddenKeys);
-
-// Prepare GUI functions and variables.
-PREP_SUB(gui,onButtonClick_configure);
-PREP_SUB(gui,onButtonClick_delete);
-PREP_SUB(gui,onButtonClick_default);
-PREP_SUB(gui,onButtonClick_cancel);
-PREP_SUB(gui,onComboChanged);
-PREP_SUB(gui,onKeyDown);
-PREP_SUB(gui,onKeyUp);
-//PREP_SUB(gui,onKeyDownNextGen);
-//PREP_SUB(gui,onKeyUpNextGen);
-PREP_SUB(gui,onLBDblClick);
-PREP_SUB(gui,updateGUI);
 
 GVAR(input) = [];
 GVAR(frameNoKeyPress) = diag_frameNo;
